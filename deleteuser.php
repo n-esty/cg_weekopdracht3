@@ -12,7 +12,7 @@
     $user_id = $_SESSION["id"];
     
     if($id == $_SESSION["id"] || $account_type == "a"){
-        $sql = "DELETE FROM articles WHERE id=?";
+        $sql = "DELETE FROM users WHERE id=?";
         if($stmt = mysqli_prepare($link, $sql)){
                 mysqli_stmt_bind_param($stmt, "s", $param_id);
                 
@@ -22,7 +22,11 @@
                 // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
                     // Redirect to login page
-                    header("location: articles.php");
+                    if($id == $_SESSION["id"]) {
+                        header("location: logout.php");
+                    } else {
+                        header("location: articles.php");
+                    }
                 } else{
                     echo "Something went wrong. Please try again later.";
                 }
@@ -30,6 +34,8 @@
              
             // Close statement
             mysqli_stmt_close($stmt);
+        } else {
+            header("location: articles.php");
         }
         
         // Close connection

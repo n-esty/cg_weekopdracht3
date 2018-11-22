@@ -8,7 +8,7 @@
         $user_id = $_GET['user'];
     }
     
-    // Get article with id = $id
+    // Get user with id = $id
     $sql = "SELECT account_type, username, created_at FROM users WHERE id = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_id);
@@ -40,6 +40,14 @@
             .wrapper{ width: 800px; padding: 20px;margin-left:auto;margin-right:auto; }
             table td th{padding:5px}
         </style>
+        <script>
+            function deleteUsr() {
+                var delA = confirm("Weet je zeker dat je dit wilt verwijderen?");
+                if (delA == true) {
+                    window.location.href='deleteuser.php?id=<?php echo $user_id ?>'
+                }
+            }
+        </script>
     </head>
     <body>
         <?php include 'header.php' ?>
@@ -47,10 +55,12 @@
             <?php
                 echo "<h1> $u_name </h1>
                 <p><i> $a_type </i></p>
-                <div style='height:10px;width:100%;background-color:grey'></div>
                 <p>$c_at</p>";
                 if($admin){
-                    echo "admin";
+                    echo "<br><br><br>
+                    <a class=\"btn btn-danger\" onclick='deleteUsr()'>DELETE USER</a>
+                    &nbsp;&nbsp;
+                    <a class=\"btn btn-default\" href='edituser.php?id=$user_id'>EDIT USER</a>";
                 }
             ?>
         </div>

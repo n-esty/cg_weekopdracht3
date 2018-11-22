@@ -4,6 +4,16 @@
     require_once "config.php";
     $click_order = "ASC";
     $order_by = "DESC";
+    $order_col = "created_at";
+    if (isset($_GET["by"])) {
+        $by = htmlspecialchars($_GET["by"]);
+        if ($by === "author") {
+            $order_col = $by;
+            if (isset($_GET["order"]) && $_GET["order"] === "ASC") {
+                $click_order = "DESC";
+            }
+        }
+    }
     if (isset($_GET["order"])) {
         $order = htmlspecialchars($_GET["order"]);
         if ($order === "ASC") {
@@ -11,7 +21,7 @@
             $click_order = "DESC";
         }
     }
-    $articles = mysqli_query($link,"SELECT * FROM articles ORDER BY created_at $order_by");
+    $articles = mysqli_query($link,"SELECT * FROM articles ORDER BY $order_col $order_by");
 ?>
 <html>
     <head>
@@ -35,7 +45,7 @@
             <h1> Articles: </h1>
             <table border='1'>
                 <tr>
-                <th style='padding:10px'>auteur</th>
+                <th style='padding:10px'><a href='?by=author&order=<?php echo     $click_order ?>'>auteur</a></th>
                 <th style='padding:10px'>titel</th>
                 <th style='padding:10px'><a href='?order=<?php echo     $click_order ?>'>tijd sinds gepost</a></th>
                 </tr>
