@@ -5,22 +5,33 @@
     $click_order = "ASC";
     $order_by = "DESC";
     $order_col = "created_at";
-    if (isset($_GET["by"])) {
-        $by = htmlspecialchars($_GET["by"]);
-        if ($by === "author") {
-            $order_col = $by;
-            if (isset($_GET["order"]) && $_GET["order"] === "ASC") {
-                $click_order = "DESC";
-            }
-        }
-    }
+    $aut_sort = $date_sort = "";
+    $up = "&#11205;";
+    $down = "&#11206;";
+    $direction = $down;
+
     if (isset($_GET["order"])) {
         $order = htmlspecialchars($_GET["order"]);
         if ($order === "ASC") {
             $order_by = "ASC";
+            $direction = $up;
             $click_order = "DESC";
         }
     }
+    
+    if (isset($_GET["by"])) {
+        $by = htmlspecialchars($_GET["by"]);
+        if ($by === "author") {
+            $order_col = $by;
+            $aut_sort = $direction;
+            if (isset($_GET["order"]) && $_GET["order"] === "ASC") {
+                $click_order = "DESC";
+            }
+        }
+    } else {
+        $date_sort = $direction;
+    }
+   
     $articles = mysqli_query($link,"SELECT * FROM articles ORDER BY $order_col $order_by");
 ?>
 <html>
@@ -45,9 +56,9 @@
             <h1> Articles: </h1>
             <table border='1'>
                 <tr>
-                <th style='padding:10px'><a href='?by=author&order=<?php echo     $click_order ?>'>auteur</a></th>
+                <th style='padding:10px'><a href='?by=author&order=<?php echo     $click_order ?>'>auteur <?php echo $aut_sort ?></a></th>
                 <th style='padding:10px'>titel</th>
-                <th style='padding:10px'><a href='?order=<?php echo     $click_order ?>'>tijd sinds gepost</a></th>
+                <th style='padding:10px'><a href='?order=<?php echo     $click_order ?>'>tijd sinds gepost <?php echo $date_sort ?></a></th>
                 </tr>
                 <?php 
                 while($row = mysqli_fetch_array($articles))
