@@ -30,9 +30,17 @@
         }
     } else {
         $date_sort = $direction;
-    }
-   
-    $articles = mysqli_query($link,"SELECT * FROM articles ORDER BY $order_col $order_by");
+    } 
+    $query = $_GET['query'];  
+    $min_length = 3;     
+    if(strlen($query) >= $min_length){ 
+         
+        $query = htmlspecialchars($query); 
+         
+        $articles = mysqli_query($link,"SELECT * FROM articles WHERE (`title` LIKE '%".$query."%') OR (`body` LIKE '%".$query."%') ORDER BY $order_col $order_by" ) or die(mysqli_error($link));
+    } else {
+          header("location: search.php"); 
+    }    
 ?>
 <html>
     <head>
@@ -48,18 +56,13 @@
     <body>
         <?php include 'header.php' ?>
         <div class="wrapper">
-            <?php     
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-                    echo '<a class="btn btn-primary" href="submit.php">+ Maak nieuw artikel</a>';
-                }
-            ?>
-            <a class="btn btn-default" href="search.php">&#128269; Zoek artikel</a>
-            <h1> Articles: </h1>
+            <a class="btn btn-primary" href="search.php">< Terug naar zoeken</a>
+            <h1> Resultaten: </h1>
             <table border='1'>
                 <tr>
-                <th style='padding:10px'><a href='?by=author&order=<?php echo     $click_order ?>'>auteur <?php echo $aut_sort ?></a></th>
+                <th style='padding:10px'><a href='?query=<?php echo $query ?>&by=author&order=<?php echo     $click_order ?>'>auteur <?php echo $aut_sort ?></a></th>
                 <th style='padding:10px'>titel</th>
-                <th style='padding:10px'><a href='?order=<?php echo     $click_order ?>'>tijd sinds gepost <?php echo $date_sort ?></a></th>
+                <th style='padding:10px'><a href='?query=<?php echo $query ?>&order=<?php echo     $click_order ?>'>tijd sinds gepost <?php echo $date_sort ?></a></th>
                 </tr>
                 <?php 
                 while($row = mysqli_fetch_array($articles))
