@@ -54,7 +54,7 @@
     <body>
         <?php include 'header.php' ?>
         <div class="wrapper">
-<a class="btn btn-primary" href="articles.php">< Terug naar blog overzicht</a>
+<a class="btn btn-primary" href="articles.php">&#11207; Terug naar blog overzicht</a>
 
             <h1> Users: </h1>
             <table border='1'>

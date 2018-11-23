@@ -150,7 +150,7 @@
     <body>
         <?php include 'header_restricted.php' ?>
         <div class="wrapper">
-            <a class="btn btn-primary" href='article.php?id=<?php echo $id ?>'>< Terug naar artikel</a>
+            <a class="btn btn-primary" href='article.php?id=<?php echo $id ?>'>&#11207; Terug naar artikel</a>
             <h2>Edit post: <?php echo $title; ?></h2>
             <p>Edit hier je post.</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">

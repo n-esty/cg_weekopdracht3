@@ -20,7 +20,7 @@
     <body>
         <?php include 'header.php' ?>
         <div class="wrapper">
-            <a class="btn btn-primary" href='articles.php'>< Terug naar blog overzicht</a>
+            <a class="btn btn-primary" href='articles.php'>&#11207; Terug naar blog overzicht</a>
             <h2>Search:</h2>
             <form action="results.php" method="GET">
                 <div class="form-group">

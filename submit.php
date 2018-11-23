@@ -124,6 +124,7 @@
     <body>
         <?php include 'header_restricted.php' ?>
         <div class="wrapper">
+        <a class="btn btn-primary" href='articles.php'>&#11207; Terug naar blog overzicht</a>
             <h2>Maak post</h2>
             <p>Vul dit in om een blogpost te maken.</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">

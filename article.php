@@ -65,7 +65,7 @@
     <body>
         <?php include 'header.php' ?>
         <div class="wrapper">
-            <a class="btn btn-primary" href='articles.php'>< Terug naar lijst</a>
+            <a class="btn btn-primary" href='articles.php'>&#11207; Terug naar blog overzicht</a>
             <?php
                 echo "<h1> $title </h1>
                 <p><i> $author_name </i></p>

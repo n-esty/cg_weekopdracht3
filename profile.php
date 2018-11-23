@@ -52,6 +52,7 @@
     <body>
         <?php include 'header.php' ?>
         <div class="wrapper">
+        <a class="btn btn-primary" href='users.php'>&#11207; Terug naar gebruikers</a>
             <?php
                 echo "<h1> $u_name </h1>
                 <p><i> $a_type </i></p>

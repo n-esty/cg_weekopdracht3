@@ -56,7 +56,7 @@
     <body>
         <?php include 'header.php' ?>
         <div class="wrapper">
-            <a class="btn btn-primary" href="search.php">< Terug naar zoeken</a>
+            <a class="btn btn-primary" href="search.php">&#11207; Terug naar zoeken</a>
             <h1> Resultaten: </h1>
             <table border='1'>
                 <tr>
