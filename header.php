@@ -79,6 +79,10 @@
     }
     ?>
 <div class="header">
+<div class="header_cont">
+    <div class="users">
+    <a href="users.php" class="btn btn-default" style="margin-top:31px;margin-left:20px;">User Overview</a>
+    </div>
     <div class="login">
         <?php
             // Check if the user is already logged in, if yes then redirect him to welcome page
@@ -115,5 +119,6 @@
             }
             
             ?>
+    </div>
     </div>
 </div>
